@@ -21,14 +21,6 @@
  ENABLE_MAN ?= no
  DOCBOOK_XSL ?= http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
  
-@@ -68,6 +68,7 @@
- 
- clean-bin:
- 	rm -f $(OBJFILES) git-crypt
-+	rm -f $(OBJFILES) git-crypt.exe
- 
- clean-man:
- 	rm -f man/man1/git-crypt.1
 @@ -27,6 +40,10 @@ OBJFILES = \
  OBJFILES += crypto-openssl-10.o crypto-openssl-11.o
  LDFLAGS += -lcrypto
@@ -41,3 +33,11 @@
  DOCBOOK_FLAGS += --param man.output.in.separate.dir 1 \
  		 --stringparam man.output.base.dir man/ \
 
+@@ -68,6 +68,7 @@
+ 
+ clean-bin:
+ 	rm -f $(OBJFILES) git-crypt
++	rm -f $(OBJFILES) git-crypt.exe
+ 
+ clean-man:
+ 	rm -f man/man1/git-crypt.1

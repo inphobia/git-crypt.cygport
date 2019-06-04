@@ -13,7 +13,6 @@ passwords) in the same repository as your code, without requiring you to lock
 down your entire repository."
 HOMEPAGE="https://www.agwa.name/projects/git-crypt/"
 SRC_URI="https://github.com/AGWA/git-crypt/archive/${VERSION}/git-crypt-${VERSION}.tar.gz"
-SRC_URI+="docbook.xsl"
 PATCH_URI="
 	0.6.0-cygwindef.patch
 	0.6.0-makefile.patch
@@ -21,13 +20,13 @@ PATCH_URI="
 "
 
 # Build dependencies only
-DEPEND="libssl-dev make gcc-g++ libxslt"
+DEPEND="libssl-devel make gcc-g++ libxslt"
 # runtime deps to go in setup.hint, and note the escaped newline
 REQUIRES="git openssl"
 
 # don't download stylesheet, provide included one
-DOCBOOK_XSL=docbook.xsl
-ENABLE_MAN=yes
+# also build the manual
+MAKEOPTS+="ENABLE_MAN=yes PREFIX=$(__host_prefix)"
 
 # We use the src_compile and src_test provided by meson.cygclass
 src_compile() {
