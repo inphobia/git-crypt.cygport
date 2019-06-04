@@ -1,0 +1,37 @@
+NAME="git-crypt"
+VERSION=0.6.0
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Transparent file encryption in git"
+DESCRIPTION="git-crypt enables transparent encryption and decryption of files in a git
+repository. Files which you choose to protect are encrypted when committed, and
+decrypted when checked out. git-crypt lets you freely share a repository
+containing a mix of public and private content. git-crypt gracefully degrades,
+so developers without the secret key can still clone and commit to a repository
+with encrypted files. This lets you store your secret material (such as keys or
+passwords) in the same repository as your code, without requiring you to lock
+down your entire repository."
+HOMEPAGE="https://www.agwa.name/projects/git-crypt/"
+SRC_URI="https://github.com/AGWA/git-crypt/archive/${VERSION}/git-crypt-${VERSION}.tar.gz"
+SRC_URI+="docbook.xsl"
+PATCH_URI="
+	0.6.0-cygwindef.patch
+	0.6.0-makefile.patch
+	0.6.0-unbuff.patch
+"
+
+# Build dependencies only
+DEPEND="libssl-dev make gcc-g++ libxslt"
+# runtime deps to go in setup.hint, and note the escaped newline
+REQUIRES="git openssl"
+
+# don't download stylesheet, provide included one
+DOCBOOK_XSL=docbook.xsl
+ENABLE_MAN=yes
+
+# We use the src_compile and src_test provided by meson.cygclass
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake
+}

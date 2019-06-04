@@ -1,0 +1,11 @@
+# from https://github.com/rasa/git-crypt/commit/701fb8e708e2dae95d4664501cd062450fdf4126
+--- a/util-win32.cpp
++++ b/util-win32.cpp
+@@ -170,6 +170,7 @@ static void	init_std_streams_platform ()
+ {
+ 	_setmode(_fileno(stdin), _O_BINARY);
+ 	_setmode(_fileno(stdout), _O_BINARY);
++	std::cout.setf(std::ios::unitbuf);
+ }
+ 
+ void create_protected_file (const char* path) // TODO

@@ -1,0 +1,13 @@
+# from https://github.com/rasa/git-crypt/commit/701fb8e708e2dae95d4664501cd062450fdf4126
+--- a/util.cpp
++++ b/util.cpp
+@@ -150,7 +150,7 @@ void		init_std_streams ()
+ 	init_std_streams_platform();
+ }
+ 
+-#ifdef _WIN32
++#if defined(_WIN32) && !defined(__CYGWIN__)
+ #include "util-win32.cpp"
+ #else
+ #include "util-unix.cpp"
+
