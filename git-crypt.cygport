@@ -21,14 +21,14 @@ PATCH_URI="
 
 # Build dependencies only
 DEPEND="libssl-devel make gcc-g++ libxslt"
-# runtime deps to go in setup.hint, and note the escaped newline
+# runtime deps to go in setup.hint
 REQUIRES="git openssl"
 
 # don't download stylesheet, provide included one
 # also build the manual
 MAKEOPTS+="ENABLE_MAN=yes PREFIX=$(__host_prefix)"
 
-# We use the src_compile and src_test provided by meson.cygclass
+# standard build process
 src_compile() {
 	lndirs
 	cd ${B}
